@@ -1,6 +1,7 @@
 // Example from https://beta.reactjs.org/learn
 
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 import styles from './counters.module.css'
 
 function MyButton() {
@@ -9,6 +10,10 @@ function MyButton() {
   function handleClick() {
     setCount(count + 1)
   }
+
+  useEffect(() => {
+    console.log('[count]:', count)
+  }, [])
 
   return (
     <div>
