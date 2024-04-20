@@ -1,0 +1,43 @@
+## Docker 部署 nuxt 应用
+
+``` sh
+# syntax = docker/dockerfile:1
+
+ARG NODE_VERSION=18.14.2
+
+FROM node:${NODE_VERSION}-slim as base
+
+ARG PORT=3000
+
+ENV NODE_ENV=development
+
+WORKDIR /src
+
+# Build
+FROM base as build
+
+RUN npm install -g pnpm
+
+COPY --link package.json pnpm-lock.yaml .
+RUN pnpm i
+
+COPY --link ./ .
+
+# Set env
+ENV NUXT_BACKEND_URI="xxx"
+
+RUN pnpm build
+
+# Run
+FROM base
+
+ENV PORT=$PORT
+ENV NUXT_APP_BASE_URL=/website/
+
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "node", ".output/server/index.mjs" ]
+
+```

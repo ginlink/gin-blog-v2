@@ -1,5 +1,9 @@
 {
   "index": "介绍",
+  "js": "Js",
+  "golang": "Golang",
+  "universality": "通用性技能",
+  "module": "组件",
   "about": {
     "title": "About",
     "type": "page"

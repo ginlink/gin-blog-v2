@@ -1,9 +1,9 @@
 {
   "index": "Introduction",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
+  "js": "Js",
+  "golang": "Golang",
+  "universality": "Universal skills",
+  "module": "Modules",
   "contact": {
     "title": "Contact ↗",
     "type": "page",

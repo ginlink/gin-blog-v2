@@ -1,0 +1,19 @@
+## Atob jwt 解析失败
+
+### 错误信息
+
+> DOMException: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.
+
+
+### 解决方案
+
+- 将内部字符替换掉
+
+``` js
+const binString = atob(base64String.replace(/-/g, "+").replace(/_/g, "/"));
+```
+
+
+### 参考
+
+- https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/6492
